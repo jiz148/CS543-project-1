@@ -1,0 +1,124 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+  padding:0;
+  font-family: Georgia, serif;
+  background:#fff;
+  margin:0;
+  color:rgb(68, 68, 68);
+}
+
+.content {
+  overflow:hidden;
+  background:#dfdfdf;
+}
+
+.content div {
+  padding:20px;
+}
+
+h1 {
+  padding:20px;
+  margin:0;
+  color:#ddd;
+  font-weight:normal;
+  font-variant:small-caps;
+  background:#222;
+  font-size: 2em;
+}
+
+h2 {
+  font-weight: normal;
+  padding: 0 0 0.3em;
+  margin:0;
+  font-variant:small-caps;
+  font-size: 1.4em;
+}
+
+p {
+  font-size:0.8em;
+  font-family:sans-serif;
+  line-height: 1.5em;
+}
+
+input{
+  width:200px;
+  padding:6px;
+  border-radius:3px;
+  border:1px solid #999;
+  font-family:monaco, "Courier New", mono;
+}
+
+label{
+  display:inline-block;
+  width:80px;
+  text-align:right;
+  padding: 0 5px 0 0;
+}
+
+textarea {
+  background: #f3f3f7;
+  border: 1px solid #dedee3;
+  padding: 11px;
+  font-size: 12px;
+  line-height: 1.3em;
+  margin-bottom: 22px;
+  overflow: auto;
+}
+
+textarea {
+  font-size: 0.8em;
+  white-space:normal;
+  font-family:monaco, "Courier New", mono;
+}
+
+h1, h2, h3 {
+  font-family:Georgia, serif;
+}
+
+/* Simple Responsive */
+.row {
+  width: 100%;
+}
+
+/* for result table */
+th, td, p, input, h3 {
+  font:15px 'Segoe UI';
+}
+table, th, td {
+  border: solid 1px black;
+  border-collapse: collapse;
+  padding: 2px 3px;
+  text-align: center;
+}
+th {
+  font-weight:bold;
+}
+
+/* Large devices */
+@media (min-width: 1200px) {
+  .col-lg-6, .col-lg-12 {
+    float: left;
+  }
+  .col-lg-6 {
+    width: 50%;
+  }
+  .col-lg-12 {
+    width: 100%;
+  }
+}
+
+/* Medium devices */
+@media (min-width: 950px) and (max-width: 1199px) {
+  .col-md-6,.col-md-12 {
+    float: left;
+  }
+  .col-md-6 {
+    width: 50%;
+  }
+  .col-md-12 {
+    width: 100%;
+  }
+}
