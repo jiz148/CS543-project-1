@@ -89,7 +89,7 @@
         <br>
         <div class="row">
             <div class="col-lg-6 col-md-6">
-                <form id="query-form" action="http://3.141.3.34:8000/" method="post">
+                <form id="query-form" action="http://127.0.0.1:5000/" method="post">
                     <h2>Plot:</h2>
                     <img id="plot" style="width: 90%; height: 400px; font-size: 2em;"> </img>
                     <input type="submit" type="button" name="run-query" value="Run">
@@ -97,7 +97,7 @@
             </div>
             <div class="col-lg-6 col-md-6">
                 <h2>Over the U.S.:</h2>
-                <img id="country-plot" style="width: 90%; height: 400px; font-size: 2em;"> </img>
+                <img id="us-plot" style="width: 90%; height: 400px; font-size: 2em;"> </img>
             </div>
         </div>
         <div class="row">
@@ -123,8 +123,19 @@
         $("input[type='date'][name='date-from']")[0].value = '2021-01-01';
         $("input[type='date'][name='date-to']")[0].value = '2021-10-24';
 
-        // country plot
-        // send request to backend for plot of U.S.
+        // send request for us map
+        $.ajax({
+            type: 'GET',
+            url: 'http://127.0.0.1:5000/us',
+            success: function (res) {
+                // get image from response
+                document.getElementById('us-plot').src = 'data:;base64,' + res['image'];
+            },
+            error: function (res) {
+                alert("Backend Problem")
+            }
+        })
+
 
         function start_timer() {
             let startTime = Date.now();
@@ -156,13 +167,13 @@
                 url: $(this).attr('action'),
                 success: function (res) {
                     // get image from response
-                    $("#plot").src = res;
+                    document.getElementById('plot').src = 'data:;base64,' + res['image'];
                     // stop timer
                     clearInterval(timer);
                     $('#success-message').css('visibility', 'visible');
                 },
                 error: function (res) {
-                    alert("Please enter correct SQL.")
+                    alert("Backend Problem")
                     clearInterval(timer);
                 }
             })
