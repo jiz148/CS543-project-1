@@ -89,7 +89,7 @@
         <br>
         <div class="row">
             <div class="col-lg-6 col-md-6">
-                <form id="query-form" action="http://127.0.0.1:5000/" method="post">
+                <form id="query-form" action="http://backend:8000/" method="post">
                     <h2>Plot:</h2>
                     <img id="plot" style="width: 90%; height: 400px; font-size: 2em;"> </img>
                     <input type="submit" type="button" name="run-query" value="Run">
@@ -126,7 +126,7 @@
         // send request for us map
         $.ajax({
             type: 'GET',
-            url: 'http://127.0.0.1:5000/us',
+            url: 'http://backend:8000/us',
             success: function (res) {
                 // get image from response
                 document.getElementById('us-plot').src = 'data:;base64,' + res['image'];
