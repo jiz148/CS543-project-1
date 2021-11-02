@@ -5,9 +5,11 @@ from datetime import datetime as dt
 
 import threading
 
-from backend.kafka_util.producer import produce
+#from backend.kafka_util.producer import produce
+from kafka_util.producer import produce
 
-from backend.kafka_util import producer
+#from backend.kafka_util import producer
+from kafka_util import producer
 # consumer = KafkaConsumer('data', bootstrap_servers=['localhost:9092'],value_deserializer=lambda m: json.loads(m.decode('utf-8')))
 
 
@@ -60,16 +62,17 @@ def consumer(plot, b, c, state):
         for message in _consumer:
             for day in message.value["actualsTimeseries"]:
                 if b == day["date"]:
-                    start_dose1 = day["vaccinationsInitiated"]
-                    start_dose2 = day["vaccinationsCompleted"]
+                    start_dose1 = day["vaccinationsInitiated"] if day["vaccinationsInitiated"] else 0
+                    start_dose2 = day["vaccinationsCompleted"] if day["vaccinationsCompleted"] else 0
                 if c == day["date"]:
-                    end_dose1 = day["vaccinationsInitiated"]
-                    end_dose2 = day["vaccinationsCompleted"]
+                    end_dose1 = day["vaccinationsInitiated"] if day["vaccinationsInitiated"] else 0
+                    end_dose2 = day["vaccinationsCompleted"] if day["vaccinationsCompleted"] else 0
 
-            dose1_perc = (end_dose1 - start_dose1 / ((end_dose1 - start_dose1) + (end_dose2 - start_dose2))) * 100
-            dose2_perc = (end_dose2 - start_dose2 / ((end_dose1 - start_dose1) + (end_dose2 - start_dose2))) * 100
+            dose1_perc = ((end_dose1 - start_dose1) / ((end_dose1 - start_dose1) + (end_dose2 - start_dose2))) * 100
+            dose2_perc = ((end_dose2 - start_dose2) / ((end_dose1 - start_dose1) + (end_dose2 - start_dose2))) * 100
 
             output = {'dose1': dose1_perc, 'dose2': dose2_perc}
+            print(output)
             return output
 
 

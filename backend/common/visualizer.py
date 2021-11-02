@@ -11,6 +11,7 @@ def visualize(plot_type, data, state, date_from, date_to):
     :return: image of the data
     """
     img = None
+    plt.clf()
     if plot_type == "hist":
         plt.bar(list(data.keys()), data.values(), color='g')
         plt.xlabel("risk levels")
@@ -49,7 +50,7 @@ def visualize(plot_type, data, state, date_from, date_to):
         x, y = zip(*my_list)
         plt.gca().yaxis.set_major_formatter(mticker.FormatStrFormatter('%d'))
         plt.plot(x, y)
-        plt.xticks(rotation=340)
+        plt.xticks(color='w')
 
         plt.xlabel("date")
         plt.ylabel("number of cases")
